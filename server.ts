@@ -1,8 +1,11 @@
 /// <reference path="./typings/node/node.d.ts"/>
 /// <reference path="./typings/mongodb/mongodb.d.ts"/>
+/// <reference path="./typings/socket.io/socket.io.d.ts"/>
+/// <reference path="./server/modules/data-transfer.ts"/>
 var express = require('express');
 var path = require('path');
 var httpProxy = require('http-proxy');
+var http = require('http').Server(express);
 var proxy = httpProxy.createProxyServer({
   changeOrigin: true
 });
@@ -10,10 +13,12 @@ var app = express();
 var dev = true;
 var port = dev ? 3000 : 80;
 var publicPath = path.resolve(__dirname, 'public');
+var DataTransfer = require('./server/modules/data-transfer.js');
 
 import MongoDB = require('mongodb');
 var MongoClient = MongoDB.MongoClient;
 var assert = require('assert');
+
 
 if (dev) {
   var bundle = require('./server/bundle.js');
@@ -42,3 +47,6 @@ MongoClient.connect(url, function(err, db) {
   console.log("Connected correctly to server.");
   db.close();
 });
+
+//Data transfer
+console.log(DataTransfer.status());

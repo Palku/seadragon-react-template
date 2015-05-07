@@ -21,34 +21,42 @@ var config = {
   },
   module: {
     loaders: [
-    {
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: [nodeModulesPath]
-    },
-    {
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: [nodeModulesPath]
+      },
+      {
         test: /\.css$/,
-        loader: 'style!css'
-    }, 
-   
-    {
+        loader: 'style!css',
+        exclude: [nodeModulesPath]
+      },
+
+      {
         test: /\.ts$/,
-        loader: 'typescript-loader?typescriptCompiler=jsx-typescript'
-    },
-    {
+        loader: 'typescript-loader?typescriptCompiler=jsx-typescript',
+        exclude: [nodeModulesPath]
+      },
+      {
         test: /\.jsx$/,
-        loader: 'jsx-loader?insertPragma=React.DOM&harmony'
-    },
-     { 
-      test: /\.rt/, 
-      loader: "react-templates-loader"
-    }
+        loader: 'jsx-loader?insertPragma=React.DOM&harmony',
+        exclude: [nodeModulesPath]
+      },
+      {
+        test: /\.rt/,
+        loader: "react-templates-loader",
+        exclude: [nodeModulesPath]
+      }
     ]
   },
   plugins: [new Webpack.HotModuleReplacementPlugin()],
+  node: {
+    fs: "empty"
+  },
   externals: {
-        "React": "react"
-    }
+    "React": "react",
+    "SocketIO" : "socket.io"
+  }
 };
 
 module.exports = config;
