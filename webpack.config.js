@@ -23,7 +23,8 @@ var config = {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        //        loader: 'babel',
+        loader: "babel-loader",
         exclude: [nodeModulesPath]
       },
       {
@@ -44,7 +45,7 @@ var config = {
   },
   externals: {
     "React": "react",
-    "SocketIO" : "socket.io"
+    "SocketIO": "socket.io"
   }
 };
 
