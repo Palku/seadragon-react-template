@@ -7,7 +7,7 @@ var buildPath = path.resolve(__dirname, 'public', 'build');
 var config = {
   context: __dirname,
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.js', '.jsx']
+    extensions: ['', '.webpack.js', '.web.js', '.js']
   },
   devtool: 'eval',
   entry: [
@@ -29,17 +29,6 @@ var config = {
       {
         test: /\.css$/,
         loader: 'style!css',
-        exclude: [nodeModulesPath]
-      },
-
-      {
-        test: /\.ts$/,
-        loader: 'typescript-loader?typescriptCompiler=jsx-typescript',
-        exclude: [nodeModulesPath]
-      },
-      {
-        test: /\.jsx$/,
-        loader: 'jsx-loader?insertPragma=React.DOM&harmony',
         exclude: [nodeModulesPath]
       },
       {
